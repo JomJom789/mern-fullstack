@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+
+    {{!-- Tailwind --}}
+    <script src="https://cdn.tailwindcss.com"></script>
+
+  </head>
+
+  <body>
+    <section className="max-w-2xl px-6 py-8 mx-auto bg-white dark:bg-gray-900">
+      
+      {{!-- /* --------------------------------- Header --------------------------------- */ --}}
+      <header>
+        <a href="#">
+          <img
+            src="https://merakiui.com/images/full-logo.svg" 
+            alt=""
+            className="w-auto h-7 sm:h-8"
+          />
+        </a>
+      </header>
+      
+      {{!-- /* ---------------------------------- Main ---------------------------------- */ --}}
+      <main className="mt-8">
+
+        {{!-- Name --}}
+        <h2 className="text-green-700 dark:text-gray-200">
+          Hi {{firstName}} {{lastName}}
+        </h2>
+
+        {{!-- Message --}}
+        <p className="mt-2 leading-loose text-gray-600 dark:text-gray-300">
+          {{subject}}
+
+          <a 
+            href={{url}} 
+            className="font-semibold"
+          >
+            {{text}}
+          </a>
+        </p>
+        
+        <button className='px-6 py-2 mt-4 text-sm font-medium tracking-wider text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80'>
+          Accept the invite
+        </button>
+        
+        <p className="mt-8 text-gray-600 dark:text-gray-300">
+          Thanks, <br />
+          Meraki UI team
+        </p>
+
+      </main>
+        
+      {{!-- /* --------------------------------- Footer --------------------------------- */ --}}
+      <footer className="mt-8">
+        <p className="text-gray-500 dark:text-gray-400">
+          This email was sent to <a href="#" className="text-blue-600 hover:underline dark:text-blue-400" target="_blank">contact@merakiui.com</a>. 
+          If you'd rather not receive this kind of email, you can <a href="#" className="text-blue-600 hover:underline dark:text-blue-400">unsubscribe</a> or <a href="#" className="text-blue-600 hover:underline dark:text-blue-400">manage your email preferences</a>.
+        </p>
+
+        <p 
+          className='mt-3 text-gray-500 dark:text-gray-400'
+        >
+          Copyright © {new Date().getFullYear()}  Meraki UI. All Rights Reserved.
+        </p>
+      </footer>
+
+    </section>
+    
+	  <script src="index.js"></script>
+
+  </body>
+
+</html>

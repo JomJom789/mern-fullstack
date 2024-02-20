@@ -1,0 +1,237 @@
+export const websiteData = [
+	{
+		_id: 0,
+		userId: 0,
+		title: 'EC Torres Medical Clinic',
+		desciption: 'A Service Company that Provide Medical Service to All Manpower Businesses Across Metro Manila',
+		category: 'client',
+		type: 'static',
+		imgCover: "cover",
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 1,
+		userId: 0,
+		title: 'EC Torres Medical Clinic',
+		desciption: 'A Service Company that Provide Medical Service to All Manpower Businesses Across Metro Manila',
+		category: 'client',
+		type: 'static',
+		imgCover: "cover",
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 2,
+		userId: 0,
+		title: 'EC Torres Medical Clinic',
+		desciption: 'A Service Company that Provide Medical Service to All Manpower Businesses Across Metro Manila',
+		category: 'client',
+		type: 'static',
+		imgCover: "cover",
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 3,
+		userId: 0,
+		title: 'EC Torres Medical Clinic',
+		desciption: 'A Service Company that Provide Medical Service to All Manpower Businesses Across Metro Manila',
+		category: 'client',
+		type: 'static',
+		imgCover: "cover",
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 4,
+		userId: 0,
+		title: 'EC Torres Medical Clinic',
+		desciption: 'A Service Company that Provide Medical Service to All Manpower Businesses Across Metro Manila',
+		category: 'client',
+		type: 'static',
+		imgCover: "cover",
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 5,
+		userId: 0,
+		title: 'EC Torres Medical Clinic',
+		desciption: 'A Service Company that Provide Medical Service to All Manpower Businesses Across Metro Manila',
+		category: 'client',
+		type: 'static',
+		imgCover: "cover",
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	}
+];
+
+export const mobileData = [
+	{
+		_id: 0,
+		userId: 0,
+		title: 'MiBu Essential',
+		desciption: 'Micro Business App, Our goal is to help small business to boost their productivity',
+		category: 'publish',
+		imgCover: 'cover',
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 1,
+		userId: 0,
+		title: 'MiBu Essential',
+		desciption: 'Micro Business App, Our goal is to help small business to boost their productivity',
+		category: 'publish',
+		imgCover: 'cover',
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 2,
+		userId: 0,
+		title: 'MiBu Essential',
+		desciption: 'Micro Business App, Our goal is to help small business to boost their productivity',
+		category: 'publish',
+		imgCover: 'cover',
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 3,
+		userId: 0,
+		title: 'MiBu Essential',
+		desciption: 'Micro Business App, Our goal is to help small business to boost their productivity',
+		category: 'publish',
+		imgCover: 'cover',
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 4,
+		userId: 0,
+		title: 'MiBu Essential',
+		desciption: 'Micro Business App, Our goal is to help small business to boost their productivity',
+		category: 'publish',
+		imgCover: 'cover',
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+	{
+		_id: 5,
+		userId: 0,
+		title: 'MiBu Essential',
+		desciption: 'Micro Business App, Our goal is to help small business to boost their productivity',
+		category: 'publish',
+		imgCover: 'cover',
+		images: [ "img1", "img2", "img3", "img4", "img5", "img6" ],
+		feature: {
+			feature1: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature2: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+			feature3: [ 'List 1', 'List 2', 'List 3', 'List 4' ] ,
+		},
+		url: 'https://github.com/JomJom789',
+	},
+];
+
+export const usersData = [
+	{
+		_id: 0,
+		firstName: 'Juan',
+		lastName: 'Cruz',
+		email: 'juancruz789@gmail.com',
+		picturePath: 'profilepic'
+	},
+	{
+		_id: 1,
+		firstName: 'Juan',
+		lastName: 'Cruz',
+		email: 'juancruz789@gmail.com',
+		picturePath: 'profilepic'
+	},
+	{
+		_id: 2,
+		firstName: 'Juan',
+		lastName: 'Cruz',
+		email: 'juancruz789@gmail.com',
+		picturePath: 'profilepic'
+	},
+	{
+		_id: 3,
+		firstName: 'Juan',
+		lastName: 'Cruz',
+		email: 'juancruz789@gmail.com',
+		picturePath: 'profilepic'
+	},
+	{
+		_id: 4,
+		firstName: 'Juan',
+		lastName: 'Cruz',
+		email: 'juancruz789@gmail.com',
+		picturePath: 'profilepic'
+	},
+	{
+		_id: 5,
+		firstName: 'Juan',
+		lastName: 'Cruz',
+		email: 'juancruz789@gmail.com',
+		picturePath: 'profilepic'
+	},
+
+]
