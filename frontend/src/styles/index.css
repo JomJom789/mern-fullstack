@@ -1,0 +1,250 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/cormorant-garamond/wght.css';
+@import '@fontsource-variable/cormorant-garamond/wght-italic.css';
+@import '@fontsource-variable/manrope/wght.css';
+@import 'lenis/dist/lenis.css';
+
+@theme {
+  --color-ink: #0a0a0b;
+  --color-charcoal: #121214;
+  --color-graphite: #1a1a1d;
+  --color-smoke: #26262a;
+  --color-gold: #c9a961;
+  --color-gold-light: #e6cf97;
+  --color-gold-dark: #9c7f3f;
+  --color-ivory: #f5f1e8;
+  --color-stone: #a8a296;
+  --color-stone-dark: #77736a;
+  --color-danger: #e0796b;
+  --color-success: #8fbf8a;
+
+  --font-display: 'Cormorant Garamond Variable', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Manrope Variable', 'Manrope', ui-sans-serif, system-ui, sans-serif;
+
+  --ease-luxe: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --breakpoint-3xl: 120rem;
+  --breakpoint-4xl: 160rem;
+
+  --animate-aurora-a: aurora-a 22s var(--ease-silk) infinite alternate;
+  --animate-aurora-b: aurora-b 28s var(--ease-silk) infinite alternate;
+  --animate-float: float 9s ease-in-out infinite;
+  --animate-shimmer: shimmer 1.8s linear infinite;
+
+  @keyframes aurora-a {
+    0% {
+      transform: translate3d(-10%, -6%, 0) scale(1);
+    }
+    100% {
+      transform: translate3d(12%, 8%, 0) scale(1.18);
+    }
+  }
+  @keyframes aurora-b {
+    0% {
+      transform: translate3d(8%, 10%, 0) scale(1.1) rotate(0deg);
+    }
+    100% {
+      transform: translate3d(-12%, -8%, 0) scale(0.95) rotate(25deg);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -14px, 0);
+    }
+  }
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --gold-gradient: linear-gradient(135deg, #e6cf97 0%, #c9a961 45%, #9c7f3f 100%);
+  }
+
+  html {
+    background-color: var(--color-ink);
+    overflow-x: clip;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-ink font-sans text-ivory antialiased;
+    min-height: 100dvh;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-gold) 35%, transparent);
+    color: var(--color-ivory);
+  }
+
+  :focus-visible {
+    outline: 1px solid var(--color-gold);
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+
+  /* Custom cursor: hide the native one only where the custom cursor is active. */
+  html.has-custom-cursor,
+  html.has-custom-cursor a,
+  html.has-custom-cursor button,
+  html.has-custom-cursor [role='button'] {
+    cursor: none;
+  }
+  html.has-custom-cursor input,
+  html.has-custom-cursor textarea,
+  html.has-custom-cursor select {
+    cursor: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .gold-text {
+    background-image: var(--gold-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .label-caps {
+    @apply font-sans text-[0.68rem] font-semibold tracking-[0.32em] text-stone uppercase;
+  }
+
+  .hairline {
+    border: 1px solid color-mix(in oklab, var(--color-gold) 22%, transparent);
+  }
+
+  .glass {
+    background: linear-gradient(
+      145deg,
+      color-mix(in oklab, var(--color-ivory) 6%, transparent),
+      color-mix(in oklab, var(--color-ivory) 1.5%, transparent)
+    );
+    border: 1px solid color-mix(in oklab, var(--color-gold) 18%, transparent);
+    backdrop-filter: blur(14px) saturate(130%);
+    -webkit-backdrop-filter: blur(14px) saturate(130%);
+  }
+
+  .section {
+    @apply relative mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-14 3xl:max-w-[1800px];
+  }
+
+  .input-luxe {
+    @apply w-full rounded-none border-0 border-b border-smoke bg-transparent px-0 py-3 text-base text-ivory transition-colors duration-500 placeholder:text-stone-dark focus:border-gold focus:outline-none;
+  }
+
+  .field-luxe {
+    @apply w-full rounded-lg border border-smoke bg-charcoal/70 px-3.5 py-2.5 text-sm text-ivory transition-colors placeholder:text-stone-dark focus:border-gold/70 focus:outline-none;
+  }
+
+  /* Film grain: an SVG turbulence tile, fixed above everything, never interactive. */
+  .grain {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    opacity: 0.07;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Project card: grayscale → colour, gold border sweep, sheen pass. */
+  .project-media img {
+    filter: grayscale(100%) brightness(0.85);
+    transform: scale(1);
+    transition:
+      filter 700ms var(--ease-luxe),
+      transform 900ms var(--ease-luxe);
+  }
+  .project-card:is(:hover, :focus-within, [data-active='true']) .project-media img {
+    filter: grayscale(0) brightness(1);
+    transform: scale(1.06);
+  }
+
+  /* Ring mask around the card; the conic gradient inside it rotates (transform only). */
+  .project-card .border-sweep {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    overflow: hidden;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 500ms var(--ease-luxe);
+    pointer-events: none;
+  }
+  .project-card .border-sweep::before {
+    content: '';
+    position: absolute;
+    inset: -60%;
+    background: conic-gradient(
+      transparent 0deg,
+      var(--color-gold-light) 40deg,
+      var(--color-gold) 80deg,
+      transparent 140deg,
+      transparent 360deg
+    );
+  }
+  .project-card:is(:hover, :focus-within, [data-active='true']) .border-sweep {
+    opacity: 1;
+  }
+  .project-card:is(:hover, :focus-within, [data-active='true']) .border-sweep::before {
+    animation: spin 2.6s linear infinite;
+  }
+
+  .project-card .sheen {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      color-mix(in oklab, var(--color-ivory) 16%, transparent) 50%,
+      transparent 65%
+    );
+    transform: translateX(-120%);
+  }
+  .project-card:is(:hover, :focus-within, [data-active='true']) .sheen {
+    transform: translateX(120%);
+    transition: transform 1100ms var(--ease-luxe);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .project-card .border-sweep::before {
+      animation: none !important;
+    }
+    .project-media img {
+      transition: filter 300ms ease;
+    }
+    .project-card:is(:hover, :focus-within, [data-active='true']) .project-media img {
+      transform: none;
+    }
+  }
+}

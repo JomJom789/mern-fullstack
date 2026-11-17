@@ -1,0 +1,51 @@
+# Local stack: API + web (production builds) + Redis for shared rate limiting.
+#   cp backend/.env.example backend/.env       (fill in Supabase values)
+#   Put the VITE_* build values in a root .env (compose reads it) or export them in your shell.
+#   docker compose up --build
+# Day-to-day development with hot reload is `npm run dev` (no Docker needed).
+name: jomel-portfolio
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    env_file: backend/.env
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      REDIS_URL: redis://redis:6379
+      CORS_ORIGINS: http://localhost:8080,http://localhost:5173
+    ports:
+      - '4000:4000'
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      args:
+        VITE_API_URL: http://localhost:4000
+        VITE_SITE_URL: http://localhost:8080
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:?set VITE_SUPABASE_URL in your shell or .env}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY:?set VITE_SUPABASE_ANON_KEY}
+        VITE_ADMIN_PATH: ${VITE_ADMIN_PATH:?set VITE_ADMIN_PATH}
+        VITE_TURNSTILE_SITE_KEY: ${VITE_TURNSTILE_SITE_KEY:-}
+    ports:
+      - '8080:8080'
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  redis:
+    image: redis:8-alpine
+    command: ['redis-server', '--save', '', '--appendonly', 'no']
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped

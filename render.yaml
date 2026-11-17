@@ -1,0 +1,79 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+# Public URLs are fixed below. Secrets use `sync: false`: paste backend/.env.render and
+# frontend/.env.render into each service ("Environment" → "Add from .env").
+# Service names are chosen so the URLs are:
+#   web → https://jomel-portfolio.onrender.com   api → https://jomel-portfolio-api.onrender.com
+services:
+  - type: web
+    name: jomel-portfolio-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4000
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: CORS_ORIGINS
+        value: https://jomel-portfolio.onrender.com
+      - key: REDIS_URL
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: CONTACT_FROM_EMAIL
+        sync: false
+      - key: CONTACT_TO_EMAIL
+        sync: false
+
+  - type: web
+    name: jomel-portfolio
+    runtime: static
+    buildCommand: npm ci && npm run build -w @jomel/shared && npm run build -w @jomel/frontend
+    staticPublishPath: ./frontend/dist
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 26.13.1
+      - key: VITE_API_URL
+        value: https://jomel-portfolio-api.onrender.com
+      - key: VITE_SITE_URL
+        value: https://jomel-portfolio.onrender.com
+      - key: VITE_SUPABASE_URL
+        sync: false
+      - key: VITE_SUPABASE_ANON_KEY
+        sync: false
+      - key: VITE_ADMIN_PATH
+        sync: false
+      - key: VITE_TURNSTILE_SITE_KEY
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+      - path: /*
+        name: Permissions-Policy
+        value: camera=(), microphone=(), geolocation=(), payment=()
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=63072000; includeSubDomains; preload
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

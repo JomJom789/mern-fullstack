@@ -1,0 +1,47 @@
+{
+  "name": "@jomel/backend",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portfolio API — Express 5 + TypeScript + Supabase.",
+  "type": "module",
+  "main": "dist/src/server.js",
+  "engines": {
+    "node": ">=26.13.1"
+  },
+  "scripts": {
+    "dev": "tsx watch --clear-screen=false src/server.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/src/server.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "seed": "tsx seed/seed.ts",
+    "migrate:mongo": "tsx scripts/migrate-from-mongo.ts"
+  },
+  "dependencies": {
+    "@jomel/shared": "1.0.0",
+    "@supabase/supabase-js": "2.119.0",
+    "compression": "1.8.2",
+    "cors": "2.8.6",
+    "express": "5.3.0",
+    "express-rate-limit": "8.7.4",
+    "helmet": "8.3.0",
+    "hpp": "0.2.3",
+    "pino": "10.4.0",
+    "pino-http": "11.0.0",
+    "rate-limit-redis": "6.0.2",
+    "redis": "6.3.1",
+    "resend": "6.38.1",
+    "sanitize-html": "2.18.2",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/compression": "1.8.1",
+    "@types/cors": "2.8.19",
+    "@types/express": "5.0.6",
+    "@types/hpp": "0.2.7",
+    "@types/node": "26.6.6",
+    "@types/sanitize-html": "2.16.2",
+    "mongodb": "7.9.0",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3"
+  }
+}

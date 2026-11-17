@@ -1,0 +1,42 @@
+{
+  "name": "jomel-portfolio",
+  "private": true,
+  "version": "2.0.0",
+  "description": "Jomel — Full-Stack Web & Mobile App Developer portfolio (Vite + React frontend, Express + Supabase backend).",
+  "type": "module",
+  "workspaces": [
+    "packages/shared",
+    "backend",
+    "frontend"
+  ],
+  "engines": {
+    "node": ">=26.13.1",
+    "npm": ">=11"
+  },
+  "scripts": {
+    "predev": "npm run build -w @jomel/shared",
+    "dev": "concurrently -k -n shared,api,web -c yellow,cyan,magenta \"npm run dev -w @jomel/shared\" \"npm run dev -w @jomel/backend\" \"npm run dev -w @jomel/frontend\"",
+    "build": "npm run build -w @jomel/shared && npm run build -w @jomel/backend && npm run build -w @jomel/frontend",
+    "typecheck": "npm run build -w @jomel/shared && npm run typecheck -w @jomel/backend && npm run typecheck -w @jomel/frontend",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "seed": "npm run seed -w @jomel/backend",
+    "migrate:mongo": "npm run migrate:mongo -w @jomel/backend",
+    "check": "npm run typecheck && npm run lint && npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "concurrently": "10.0.7",
+    "eslint": "10.15.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-refresh": "0.5.7",
+    "globals": "17.14.0",
+    "prettier": "3.10.1",
+    "prettier-plugin-tailwindcss": "0.8.1",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.2"
+  }
+}

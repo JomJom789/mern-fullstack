@@ -1,0 +1,49 @@
+{
+  "name": "@jomel/frontend",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portfolio web app — Vite + React + TypeScript.",
+  "type": "module",
+  "engines": {
+    "node": ">=26.13.1"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "6.3.1",
+    "@dnd-kit/sortable": "10.0.0",
+    "@dnd-kit/utilities": "3.2.2",
+    "@fontsource-variable/cormorant-garamond": "5.3.0",
+    "@fontsource-variable/manrope": "5.3.0",
+    "@hookform/resolvers": "7.0.6",
+    "@jomel/shared": "1.0.0",
+    "@supabase/supabase-js": "2.119.0",
+    "@tanstack/react-query": "5.107.1",
+    "clsx": "2.1.1",
+    "gsap": "3.15.1",
+    "lenis": "1.3.27",
+    "lucide-react": "1.73.0",
+    "motion": "14.14.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-hook-form": "7.92.0",
+    "react-router": "8.5.1",
+    "sonner": "2.0.8",
+    "tailwind-merge": "3.7.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.3.5",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.3.0",
+    "tailwindcss": "4.3.5",
+    "typescript": "6.0.3",
+    "vite": "8.3.8"
+  }
+}
