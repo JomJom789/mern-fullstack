@@ -20,7 +20,7 @@ import {
   useTransform,
   type MotionValue,
 } from 'motion/react';
-import { useRef, type MouseEvent, type PointerEvent } from 'react';
+import { useRef, useState, type MouseEvent, type PointerEvent, type RefObject } from 'react';
 import portraitLarge from '../../assets/jomel-portrait-1086.webp';
 import portraitSmall from '../../assets/jomel-portrait-640.webp';
 import { useIntro } from '../../components/layout/Intro';
@@ -46,15 +46,36 @@ const RIBBON_B = [
 const RIBBON_FADE_LEFT = 'linear-gradient(to right, transparent 0%, #000 22%)';
 const RIBBON_FADE_RIGHT = 'linear-gradient(to left, transparent 0%, #000 22%)';
 
-/** Warm, slightly muted grade so the white shirt reads as ivory under the gold lighting. */
-const PORTRAIT_GRADE = 'saturate(0.82) sepia(0.14) brightness(0.8) contrast(1.06)';
+/**
+ * At rest the portrait is a dark, gold-toned monochrome that melts into the ink/gold palette.
+ * On hover (or tap on touch screens) it eases back to the original photo colours. Both strings
+ * list the same filter functions in the same order so Motion can interpolate between them.
+ */
+const PORTRAIT_BLENDED = 'grayscale(1) sepia(0.5) saturate(1.15) brightness(0.6) contrast(1.1)';
+const PORTRAIT_ORIGINAL = 'grayscale(0) sepia(0) saturate(1) brightness(1) contrast(1)';
+
+/** True when (x, y) falls on the body of the portrait (edges are faded out, so they're ignored). */
+function isOverPortrait(img: HTMLImageElement | null, x: number, y: number): boolean {
+  if (!img) return false;
+  const rect = img.getBoundingClientRect();
+  return (
+    x >= rect.left + rect.width * 0.22 &&
+    x <= rect.right - rect.width * 0.08 &&
+    y >= rect.top + rect.height * 0.05 &&
+    y <= rect.bottom - rect.height * 0.3
+  );
+}
 
 function Portrait({
   play,
+  revealed,
+  imgRef,
   pointerX,
   scrollYProgress,
 }: {
   play: boolean;
+  revealed: boolean;
+  imgRef: RefObject<HTMLImageElement | null>;
   pointerX: MotionValue<number>;
   scrollYProgress: MotionValue<number>;
 }) {
@@ -67,12 +88,14 @@ function Portrait({
       className="pointer-events-none absolute inset-x-0 top-12 bottom-[54%] z-0 flex items-start justify-end sm:top-14 sm:bottom-[46%] lg:inset-y-0 lg:right-0 lg:left-auto lg:w-[46%] lg:items-end xl:w-[58%]"
       style={reduced ? undefined : { x, y }}
     >
-      {/* Gold halo behind the head and shoulders. */}
+      {/* Gold halo behind the head and shoulders; it dims when the photo shows its own colours. */}
       <div
-        className="absolute top-[6%] right-[8%] size-[75vw] rounded-full bg-[radial-gradient(circle,rgba(201,169,97,0.26),transparent_64%)] blur-2xl sm:size-[60vw] lg:top-auto lg:right-[14%] lg:bottom-[22%] lg:size-[min(68vh,42rem)]"
+        style={{ opacity: revealed ? 0.55 : 1 }}
+        className="absolute top-[6%] right-[8%] size-[75vw] rounded-full bg-[radial-gradient(circle,rgba(201,169,97,0.26),transparent_64%)] blur-2xl transition-opacity duration-700 sm:size-[60vw] lg:top-auto lg:right-[14%] lg:bottom-[22%] lg:size-[min(68vh,42rem)]"
         aria-hidden="true"
       />
       <motion.img
+        ref={imgRef}
         src={portraitLarge}
         srcSet={`${portraitSmall} 640w, ${portraitLarge} 1086w`}
         sizes="(min-width: 1024px) 45vw, 80vw"
@@ -82,12 +105,20 @@ function Portrait({
         decoding="async"
         fetchPriority="high"
         className="hero-portrait relative -mr-[12%] h-full w-auto max-w-none object-contain lg:mr-0 lg:h-[min(78svh,50rem)] xl:h-[min(94svh,62rem)]"
-        style={{
-          filter: PORTRAIT_GRADE,
+        initial={{
+          opacity: 0,
+          y: reduced ? 0 : 40,
+          scale: reduced ? 1 : 1.03,
+          filter: PORTRAIT_BLENDED,
         }}
-        initial={{ opacity: 0, y: reduced ? 0 : 40, scale: reduced ? 1 : 1.03 }}
-        animate={play ? { opacity: 1, y: 0, scale: 1 } : undefined}
-        transition={{ duration: 1.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        animate={{
+          ...(play ? { opacity: 1, y: 0, scale: 1 } : {}),
+          filter: revealed ? PORTRAIT_ORIGINAL : PORTRAIT_BLENDED,
+        }}
+        transition={{
+          default: { duration: 1.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] },
+          filter: { duration: reduced ? 0.2 : 0.9, ease: [0.22, 1, 0.36, 1] },
+        }}
       />
       {/* Ink wash over the lower body so it melts into the section below. */}
       <div
@@ -181,6 +212,8 @@ export function Hero() {
   const reduced = useReducedMotion();
   const scrollTo = useScrollTo();
   const ref = useRef<HTMLElement>(null);
+  const portraitRef = useRef<HTMLImageElement>(null);
+  const [portraitRevealed, setPortraitRevealed] = useState(false);
 
   const pointerX = useSpring(useMotionValue(0), { stiffness: 60, damping: 20 });
   const pointerY = useSpring(useMotionValue(0), { stiffness: 60, damping: 20 });
@@ -193,7 +226,10 @@ export function Hero() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   const onPointerMove = (event: PointerEvent<HTMLElement>) => {
-    if (reduced || event.pointerType === 'touch' || !ref.current) return;
+    if (event.pointerType === 'touch' || !ref.current) return;
+    // The headline layer sits above the photo, so hover is detected from the pointer position.
+    setPortraitRevealed(isOverPortrait(portraitRef.current, event.clientX, event.clientY));
+    if (reduced) return;
     const rect = ref.current.getBoundingClientRect();
     const nx = (event.clientX - rect.left) / rect.width - 0.5;
     const ny = (event.clientY - rect.top) / rect.height - 0.5;
@@ -213,6 +249,14 @@ export function Hero() {
       ref={ref}
       id="top"
       onPointerMove={onPointerMove}
+      onPointerLeave={() => setPortraitRevealed(false)}
+      onPointerDown={(event) => {
+        // Touch screens have no hover: a tap on the photo toggles its colours instead.
+        if (event.pointerType !== 'touch') return;
+        if (isOverPortrait(portraitRef.current, event.clientX, event.clientY)) {
+          setPortraitRevealed((value) => !value);
+        }
+      }}
       className="relative isolate flex min-h-[100svh] items-end overflow-hidden pt-60 pb-44 sm:pt-64 lg:pt-[clamp(12rem,24vh,15rem)] lg:pb-[clamp(6.5rem,12vh,9rem)]"
       aria-labelledby="hero-title"
     >
@@ -251,7 +295,13 @@ export function Hero() {
         <Ribbon phrases={RIBBON_B} baseVelocity={2} />
       </motion.div>
 
-      <Portrait play={done} pointerX={pointerX} scrollYProgress={scrollYProgress} />
+      <Portrait
+        play={done}
+        revealed={portraitRevealed}
+        imgRef={portraitRef}
+        pointerX={pointerX}
+        scrollYProgress={scrollYProgress}
+      />
 
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         {CHIPS.map((chip, i) => (
