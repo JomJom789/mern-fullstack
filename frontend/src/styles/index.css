@@ -248,3 +248,24 @@
     }
   }
 }
+
+/*
+ * Hero portrait: dissolves into the page. Two masks are intersected — a fade towards the bottom
+ * (into the ink background) and one towards the left (where the headline sits). On small screens
+ * the photo sits above the headline, so the bottom fade is much longer.
+ */
+.hero-portrait {
+  --portrait-fade-y: linear-gradient(to top, transparent 0%, #000 72%);
+  --portrait-fade-x: linear-gradient(to right, transparent 0%, #000 26%);
+  -webkit-mask-image: var(--portrait-fade-y), var(--portrait-fade-x);
+  mask-image: var(--portrait-fade-y), var(--portrait-fade-x);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+
+@media (min-width: 1024px) {
+  .hero-portrait {
+    --portrait-fade-y: linear-gradient(to top, transparent 0%, #000 30%);
+    --portrait-fade-x: linear-gradient(to right, transparent 0%, #000 32%);
+  }
+}

@@ -21,6 +21,8 @@ import {
   type MotionValue,
 } from 'motion/react';
 import { useRef, type MouseEvent, type PointerEvent } from 'react';
+import portraitLarge from '../../assets/jomel-portrait-1086.webp';
+import portraitSmall from '../../assets/jomel-portrait-640.webp';
 import { useIntro } from '../../components/layout/Intro';
 import { useScrollTo } from '../../components/layout/SmoothScroll';
 import { SplitText } from '../../components/motion/SplitText';
@@ -43,6 +45,58 @@ const RIBBON_B = [
 /** Ribbons fade out where they end on-screen, so they read as flowing in from their corner. */
 const RIBBON_FADE_LEFT = 'linear-gradient(to right, transparent 0%, #000 22%)';
 const RIBBON_FADE_RIGHT = 'linear-gradient(to left, transparent 0%, #000 22%)';
+
+/** Warm, slightly muted grade so the white shirt reads as ivory under the gold lighting. */
+const PORTRAIT_GRADE = 'saturate(0.82) sepia(0.14) brightness(0.8) contrast(1.06)';
+
+function Portrait({
+  play,
+  pointerX,
+  scrollYProgress,
+}: {
+  play: boolean;
+  pointerX: MotionValue<number>;
+  scrollYProgress: MotionValue<number>;
+}) {
+  const reduced = useReducedMotion();
+  const x = useTransform(pointerX, (v) => v * -14);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 90]);
+
+  return (
+    <motion.div
+      className="pointer-events-none absolute inset-x-0 top-12 bottom-[54%] z-0 flex items-start justify-end sm:top-14 sm:bottom-[46%] lg:inset-y-0 lg:right-0 lg:left-auto lg:w-[46%] lg:items-end xl:w-[58%]"
+      style={reduced ? undefined : { x, y }}
+    >
+      {/* Gold halo behind the head and shoulders. */}
+      <div
+        className="absolute top-[6%] right-[8%] size-[75vw] rounded-full bg-[radial-gradient(circle,rgba(201,169,97,0.26),transparent_64%)] blur-2xl sm:size-[60vw] lg:top-auto lg:right-[14%] lg:bottom-[22%] lg:size-[min(68vh,42rem)]"
+        aria-hidden="true"
+      />
+      <motion.img
+        src={portraitLarge}
+        srcSet={`${portraitSmall} 640w, ${portraitLarge} 1086w`}
+        sizes="(min-width: 1024px) 45vw, 80vw"
+        width={1086}
+        height={1448}
+        alt="Jomel"
+        decoding="async"
+        fetchPriority="high"
+        className="hero-portrait relative -mr-[12%] h-full w-auto max-w-none object-contain lg:mr-0 lg:h-[min(78svh,50rem)] xl:h-[min(94svh,62rem)]"
+        style={{
+          filter: PORTRAIT_GRADE,
+        }}
+        initial={{ opacity: 0, y: reduced ? 0 : 40, scale: reduced ? 1 : 1.03 }}
+        animate={play ? { opacity: 1, y: 0, scale: 1 } : undefined}
+        transition={{ duration: 1.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+      />
+      {/* Ink wash over the lower body so it melts into the section below. */}
+      <div
+        className="absolute inset-x-0 bottom-0 hidden h-1/3 bg-linear-to-b from-transparent to-ink lg:block"
+        aria-hidden="true"
+      />
+    </motion.div>
+  );
+}
 
 interface Chip {
   label: string;
@@ -96,7 +150,7 @@ function FloatingChip({
 
   return (
     <motion.div
-      className="absolute z-10 hidden lg:flex"
+      className="absolute z-10 hidden xl:flex"
       style={{
         top: chip.top,
         bottom: chip.bottom,
@@ -111,7 +165,7 @@ function FloatingChip({
         transition={{ duration: 1.6, delay: 0.9 + index * 0.09, ease: [0.22, 1, 0.36, 1] }}
       >
         <div
-          className="glass flex animate-float items-center gap-2.5 rounded-full px-4 py-2.5 text-xs font-medium tracking-wide text-ivory/90 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.7)]"
+          className="glass flex animate-float items-center gap-2.5 rounded-full bg-ink/70! px-4 py-2.5 text-xs font-medium tracking-wide text-ivory/90 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.7)] backdrop-blur-md"
           style={{ animationDelay: `${index * -1.3}s` }}
         >
           <Icon className="size-3.5 text-gold" aria-hidden="true" />
@@ -196,6 +250,8 @@ export function Hero() {
       >
         <Ribbon phrases={RIBBON_B} baseVelocity={2} />
       </motion.div>
+
+      <Portrait play={done} pointerX={pointerX} scrollYProgress={scrollYProgress} />
 
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         {CHIPS.map((chip, i) => (

@@ -44,6 +44,22 @@ const envSchema = z.object({
     )
     .pipe(z.array(z.url({ protocol: /^https?$/ })).min(1)),
 
+  /**
+   * Number of reverse proxies in front of the API, used to read the visitor's real IP from
+   * X-Forwarded-For (rate limiting depends on it). Render routes traffic through Cloudflare and
+   * then its own load balancer, so it defaults to 2 there (Render sets RENDER=true). Elsewhere it
+   * defaults to 0, so a directly exposed server never trusts a client-supplied header.
+   */
+  TRUST_PROXY: z.preprocess(
+    (value) => (typeof value === 'string' && value.trim() === '' ? undefined : value),
+    z.coerce
+      .number()
+      .int()
+      .min(0)
+      .max(5)
+      .default(process.env.RENDER === 'true' ? 2 : 0),
+  ),
+
   REDIS_URL: optionalString.pipe(z.url({ protocol: /^rediss?$/ }).optional()),
   RESEND_API_KEY: optionalString,
   CONTACT_FROM_EMAIL: optionalString,

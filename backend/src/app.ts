@@ -21,8 +21,9 @@ export function createApp(limiters: RateLimiters): Express {
   const app = express();
   const supabaseOrigin = new URL(env.SUPABASE_URL).origin;
 
-  // Render (and most PaaS) terminate TLS at one proxy hop: trust exactly one, for req.ip.
-  app.set('trust proxy', 1);
+  // Trust exactly the configured number of proxy hops, so req.ip (and rate limiting) sees the
+  // visitor's real address and a spoofed X-Forwarded-For prefix is ignored.
+  app.set('trust proxy', env.TRUST_PROXY);
   app.disable('x-powered-by');
 
   app.use(requestId);
