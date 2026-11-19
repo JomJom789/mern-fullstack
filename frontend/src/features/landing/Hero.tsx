@@ -51,8 +51,10 @@ const RIBBON_FADE_RIGHT = 'linear-gradient(to left, transparent 0%, #000 22%)';
  * On hover (or tap on touch screens) it eases back to the original photo colours. Both strings
  * list the same filter functions in the same order so Motion can interpolate between them.
  */
-const PORTRAIT_BLENDED = 'grayscale(1) sepia(0.6) hue-rotate(180deg) saturate(1.6) brightness(1.02) contrast(1.05)';
-const PORTRAIT_ORIGINAL = 'grayscale(0) sepia(0) hue-rotate(0deg) saturate(1) brightness(1) contrast(1)';
+const PORTRAIT_BLENDED =
+  'grayscale(1) sepia(0.6) hue-rotate(180deg) saturate(1.6) brightness(1.02) contrast(1.05)';
+const PORTRAIT_ORIGINAL =
+  'grayscale(0) sepia(0) hue-rotate(0deg) saturate(1) brightness(1) contrast(1)';
 
 /** True when (x, y) falls on the body of the portrait (edges are faded out, so they're ignored). */
 function isOverPortrait(img: HTMLImageElement | null, x: number, y: number): boolean {
