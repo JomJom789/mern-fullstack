@@ -74,7 +74,7 @@ export function Cursor() {
         animate={{
           opacity: visible ? 1 : 0,
           scale: active ? 1 : pressed ? 0.3 : 0.4,
-          backgroundColor: active ? 'rgba(201,169,97,0.92)' : 'rgba(201,169,97,0)',
+          backgroundColor: active ? 'rgba(37,99,235,0.92)' : 'rgba(37,99,235,0)',
         }}
         transition={{ type: 'spring', stiffness: 300, damping: 26 }}
       >

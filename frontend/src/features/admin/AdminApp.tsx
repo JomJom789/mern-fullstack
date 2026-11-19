@@ -23,7 +23,7 @@ function Centered({ children }: { children: ReactNode }) {
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden px-5 py-16"
     >
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -z-10 size-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,169,97,0.08),transparent_60%)]"
+        className="pointer-events-none absolute top-1/2 left-1/2 -z-10 size-[60vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.08),transparent_60%)]"
         aria-hidden="true"
       />
       {children}
@@ -145,13 +145,13 @@ export default function AdminApp() {
     <>
       <AdminContent />
       <Toaster
-        theme="dark"
+        theme="light"
         position="bottom-right"
         toastOptions={{
           style: {
-            background: '#121214',
-            border: '1px solid rgba(201,169,97,0.25)',
-            color: '#F5F1E8',
+            background: '#FFFFFF',
+            border: '1px solid rgba(37,99,235,0.25)',
+            color: '#0F1B33',
             fontFamily: 'var(--font-sans)',
           },
         }}

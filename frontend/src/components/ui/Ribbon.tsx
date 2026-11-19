@@ -69,7 +69,7 @@ export function Ribbon({ phrases, baseVelocity = -2.2, className }: RibbonProps)
   return (
     <div
       className={cn(
-        'glass overflow-hidden border-x-0 py-3.5 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)] sm:py-5',
+        'glass overflow-hidden border-x-0 py-3.5 shadow-[0_20px_60px_-20px_rgba(15,27,51,0.16)] sm:py-5',
         className,
       )}
     >

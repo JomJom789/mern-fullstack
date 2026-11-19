@@ -15,7 +15,7 @@ export default function NotFoundPage() {
         noindex
       />
       <div
-        className="pointer-events-none absolute top-1/2 left-1/2 -z-10 size-[70vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,169,97,0.12),transparent_60%)]"
+        className="pointer-events-none absolute top-1/2 left-1/2 -z-10 size-[70vmax] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.12),transparent_60%)]"
         aria-hidden="true"
       />
       <div className="section text-center">

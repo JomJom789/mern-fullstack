@@ -75,7 +75,7 @@ export default function Contact() {
       aria-label="Contact"
     >
       <div
-        className="pointer-events-none absolute right-0 bottom-0 -z-10 size-[50vmax] rounded-full bg-[radial-gradient(circle,rgba(201,169,97,0.09),transparent_60%)]"
+        className="pointer-events-none absolute right-0 bottom-0 -z-10 size-[50vmax] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.09),transparent_60%)]"
         aria-hidden="true"
       />
       <div className="section grid gap-16 lg:grid-cols-12">

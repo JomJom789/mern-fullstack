@@ -34,7 +34,7 @@ export function ProjectImage({
   const [failed, setFailed] = useState(false);
   const h = hue(seed);
   const placeholder = {
-    backgroundImage: `radial-gradient(120% 80% at 20% 10%, hsl(${(h + 40) % 360} 35% 22% / 0.9), transparent 60%), radial-gradient(90% 70% at 85% 90%, rgba(201,169,97,0.35), transparent 60%), linear-gradient(135deg, #141416, #0a0a0b)`,
+    backgroundImage: `radial-gradient(120% 80% at 20% 10%, hsl(${(h + 40) % 360} 60% 88% / 0.9), transparent 60%), radial-gradient(90% 70% at 85% 90%, rgba(37,99,235,0.35), transparent 60%), linear-gradient(135deg, #EEF3FB, #F7F9FD)`,
   };
 
   return (

@@ -119,7 +119,7 @@ function BentoTile({ tile, index }: { tile: Tile; index: number }) {
           className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100"
           style={{
             background:
-              'radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(201,169,97,0.14), transparent 60%)',
+              'radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(37,99,235,0.14), transparent 60%)',
           }}
           aria-hidden="true"
         />
@@ -178,7 +178,7 @@ export function Expertise() {
       aria-label="Expertise"
     >
       <div
-        className="pointer-events-none absolute top-1/3 left-1/2 -z-10 size-[60vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(201,169,97,0.07),transparent_60%)]"
+        className="pointer-events-none absolute top-1/3 left-1/2 -z-10 size-[60vmax] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.07),transparent_60%)]"
         aria-hidden="true"
       />
       <div className="section">

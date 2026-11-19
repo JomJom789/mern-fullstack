@@ -13,7 +13,7 @@ interface MagneticButtonProps extends Omit<ComponentProps<'a'>, 'children' | 're
 }
 
 const variants: Record<Variant, string> = {
-  gold: 'text-ink bg-[image:var(--gold-gradient)] shadow-[0_10px_40px_-12px_rgba(201,169,97,0.55)]',
+  gold: 'text-ink bg-[image:var(--gold-gradient)] shadow-[0_10px_40px_-12px_rgba(37,99,235,0.55)]',
   ghost: 'text-ivory hairline bg-ivory/[0.02] hover:bg-ivory/[0.05]',
 };
 

@@ -47,12 +47,12 @@ const RIBBON_FADE_LEFT = 'linear-gradient(to right, transparent 0%, #000 22%)';
 const RIBBON_FADE_RIGHT = 'linear-gradient(to left, transparent 0%, #000 22%)';
 
 /**
- * At rest the portrait is a dark, gold-toned monochrome that melts into the ink/gold palette.
+ * At rest the portrait is a soft, blue-toned monochrome that melts into the white/blue palette.
  * On hover (or tap on touch screens) it eases back to the original photo colours. Both strings
  * list the same filter functions in the same order so Motion can interpolate between them.
  */
-const PORTRAIT_BLENDED = 'grayscale(1) sepia(0.5) saturate(1.15) brightness(0.6) contrast(1.1)';
-const PORTRAIT_ORIGINAL = 'grayscale(0) sepia(0) saturate(1) brightness(1) contrast(1)';
+const PORTRAIT_BLENDED = 'grayscale(1) sepia(0.6) hue-rotate(180deg) saturate(1.6) brightness(1.02) contrast(1.05)';
+const PORTRAIT_ORIGINAL = 'grayscale(0) sepia(0) hue-rotate(0deg) saturate(1) brightness(1) contrast(1)';
 
 /** True when (x, y) falls on the body of the portrait (edges are faded out, so they're ignored). */
 function isOverPortrait(img: HTMLImageElement | null, x: number, y: number): boolean {
@@ -88,10 +88,10 @@ function Portrait({
       className="pointer-events-none absolute inset-x-0 top-12 bottom-[54%] z-0 flex items-start justify-end sm:top-14 sm:bottom-[46%] lg:inset-y-0 lg:right-0 lg:left-auto lg:w-[46%] lg:items-end xl:w-[58%]"
       style={reduced ? undefined : { x, y }}
     >
-      {/* Gold halo behind the head and shoulders; it dims when the photo shows its own colours. */}
+      {/* Blue halo behind the head and shoulders; it dims when the photo shows its own colours. */}
       <div
         style={{ opacity: revealed ? 0.55 : 1 }}
-        className="absolute top-[6%] right-[8%] size-[75vw] rounded-full bg-[radial-gradient(circle,rgba(201,169,97,0.26),transparent_64%)] blur-2xl transition-opacity duration-700 sm:size-[60vw] lg:top-auto lg:right-[14%] lg:bottom-[22%] lg:size-[min(68vh,42rem)]"
+        className="absolute top-[6%] right-[8%] size-[75vw] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.26),transparent_64%)] blur-2xl transition-opacity duration-700 sm:size-[60vw] lg:top-auto lg:right-[14%] lg:bottom-[22%] lg:size-[min(68vh,42rem)]"
         aria-hidden="true"
       />
       <motion.img
@@ -196,7 +196,7 @@ function FloatingChip({
         transition={{ duration: 1.6, delay: 0.9 + index * 0.09, ease: [0.22, 1, 0.36, 1] }}
       >
         <div
-          className="glass flex animate-float items-center gap-2.5 rounded-full bg-ink/70! px-4 py-2.5 text-xs font-medium tracking-wide text-ivory/90 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.7)] backdrop-blur-md"
+          className="glass flex animate-float items-center gap-2.5 rounded-full bg-ink/70! px-4 py-2.5 text-xs font-medium tracking-wide text-ivory/90 shadow-[0_12px_40px_-12px_rgba(15,27,51,0.16)] backdrop-blur-md"
           style={{ animationDelay: `${index * -1.3}s` }}
         >
           <Icon className="size-3.5 text-gold" aria-hidden="true" />
@@ -262,14 +262,14 @@ export function Hero() {
     >
       {/* Aurora / gold mesh background (transform-only animation). */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        <div className="absolute -top-1/4 -left-1/4 size-[70vmax] animate-aurora-a rounded-full bg-[radial-gradient(circle,rgba(201,169,97,0.22),transparent_62%)] blur-3xl" />
-        <div className="absolute -right-1/4 -bottom-1/3 size-[65vmax] animate-aurora-b rounded-full bg-[radial-gradient(circle,rgba(120,98,60,0.28),transparent_60%)] blur-3xl" />
-        <div className="absolute top-1/3 left-1/3 size-[40vmax] animate-aurora-b rounded-full bg-[radial-gradient(circle,rgba(245,241,232,0.06),transparent_60%)] blur-2xl [animation-delay:-9s]" />
+        <div className="absolute -top-1/4 -left-1/4 size-[70vmax] animate-aurora-a rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.22),transparent_62%)] blur-3xl" />
+        <div className="absolute -right-1/4 -bottom-1/3 size-[65vmax] animate-aurora-b rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.16),transparent_60%)] blur-3xl" />
+        <div className="absolute top-1/3 left-1/3 size-[40vmax] animate-aurora-b rounded-full bg-[radial-gradient(circle,rgba(15,27,51,0.04),transparent_60%)] blur-2xl [animation-delay:-9s]" />
         <motion.div
-          className="absolute top-0 left-0 -mt-[30vmax] -ml-[30vmax] size-[60vmax] rounded-full bg-[radial-gradient(circle,rgba(230,207,151,0.13),transparent_55%)]"
+          className="absolute top-0 left-0 -mt-[30vmax] -ml-[30vmax] size-[60vmax] rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.13),transparent_55%)]"
           style={reduced ? { opacity: 0 } : { x: spotX, y: spotY }}
         />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#0A0A0B_85%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,#FFFFFF_85%)]" />
         <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-b from-transparent to-ink" />
       </div>
 

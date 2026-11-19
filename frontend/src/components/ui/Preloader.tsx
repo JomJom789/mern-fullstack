@@ -54,9 +54,9 @@ export function Preloader() {
             <svg viewBox="0 0 100 140" className="h-28 w-20 sm:h-36 sm:w-24" aria-hidden="true">
               <defs>
                 <linearGradient id="preloader-gold" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="#E6CF97" />
-                  <stop offset="0.5" stopColor="#C9A961" />
-                  <stop offset="1" stopColor="#9C7F3F" />
+                  <stop offset="0" stopColor="#60A5FA" />
+                  <stop offset="0.5" stopColor="#2563EB" />
+                  <stop offset="1" stopColor="#1D4ED8" />
                 </linearGradient>
               </defs>
               <motion.path

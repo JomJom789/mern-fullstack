@@ -7,9 +7,9 @@ export function Monogram({ className }: { className?: string }) {
     <svg viewBox="0 0 64 64" className={cn('size-9', className)} aria-hidden="true">
       <defs>
         <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0" stopColor="#E6CF97" />
-          <stop offset="0.5" stopColor="#C9A961" />
-          <stop offset="1" stopColor="#9C7F3F" />
+          <stop offset="0" stopColor="#60A5FA" />
+          <stop offset="0.5" stopColor="#2563EB" />
+          <stop offset="1" stopColor="#1D4ED8" />
         </linearGradient>
       </defs>
       <circle
