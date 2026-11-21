@@ -81,7 +81,7 @@ export default function Contact() {
       <div className="section grid gap-16 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <SectionHeading
-            index="06"
+            index="07"
             label="Contact"
             title="Let's build something together"
             intro="Feel free to get in touch with questions, ideas or a project brief. I reply personally."

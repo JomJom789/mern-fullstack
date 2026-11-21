@@ -8,6 +8,7 @@ import { Preloader } from '../components/ui/Preloader';
 import { ProjectExplorer } from '../features/projects/components/ProjectExplorer';
 import { SelectedWork } from '../features/projects/components/SelectedWork';
 import { About } from '../features/landing/About';
+import { Commitment } from '../features/landing/Commitment';
 import { Expertise } from '../features/landing/Expertise';
 import { Footer } from '../features/landing/Footer';
 import { Hero } from '../features/landing/Hero';
@@ -78,6 +79,7 @@ export default function HomePage() {
         <Suspense fallback={<SectionPlaceholder id="process" />}>
           <Process />
         </Suspense>
+        <Commitment />
         <Suspense fallback={<SectionPlaceholder id="contact" />}>
           <Contact />
         </Suspense>
